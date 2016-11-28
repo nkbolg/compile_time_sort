@@ -3,7 +3,7 @@
 #include <utility>
 
 template <typename T, size_t N, std::size_t... I>
-constexpr std::array<T, N> compiletime_sort_impl(const std::array<T, N> elems_in, std::index_sequence<I...>)
+constexpr std::array<T, N> compiletime_sort_impl(const std::array<T, N> &elems_in, std::index_sequence<I...>)
 {
     T elems[N] = { elems_in[I]...};
     for (size_t i = 0; i < N; i++)
@@ -18,11 +18,11 @@ constexpr std::array<T, N> compiletime_sort_impl(const std::array<T, N> elems_in
             }
         }
     }
-    return{ elems[I]... };
+    return { elems[I]... };
 }
 
 template <typename T, size_t N, typename Indices = std::make_index_sequence<N>>
-constexpr std::array<T, N> compiletime_sort(const std::array<T, N> elems_in)
+constexpr std::array<T, N> compiletime_sort(const std::array<T, N> &elems_in)
 {
     return compiletime_sort_impl(elems_in, Indices());
 }
