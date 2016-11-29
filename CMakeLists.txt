@@ -1,2 +1,4 @@
 cmake_minimum_required(VERSION 2.8)
+project(CompiletimeSort)
 add_executable(CompiletimeSort Source.cpp)
+target_compile_features(CompiletimeSort PRIVATE cxx_relaxed_constexpr)
